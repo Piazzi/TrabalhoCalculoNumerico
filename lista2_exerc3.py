@@ -25,6 +25,12 @@ erro2 = math.cos(1) - derivada(1, 1/4)
 erro3 = math.cos(1) - derivada(1, 1/8)
 erro4 = math.cos(1) - derivada(1, 1/16)
 erro5 = math.cos(1) - derivada(1, 1/32)
+erro6 = math.cos(1) - derivada(1, 1/64)
+erro7 = math.cos(1) - derivada(1, 1/128)
+erro8 = math.cos(1) - derivada(1, 1/256)
+erro9 = math.cos(1) - derivada(1, 1/512)
+erro10 = math.cos(1) - derivada(1, 1/1024)
+
 
 plt.plot([erro1,erro2,erro3,erro4,erro5])
 plt.ylabel('Log')
