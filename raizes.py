@@ -27,7 +27,7 @@ def vanDerWalls(v):
 # Metodos
 # -----------------------------------------------------------------------------
 
-def bisecao(f,a,b,tol=1e-8,maxit=100):
+def bisecao(f,a,b,tol=1e-8,maxit=100000000):
     """
     Essa funcao implementa o metodo da Biseccao que encontra uma raiz da 
     funcao f no intervalo [a,b] com uma precisao tal que |f(x)| < tol.
@@ -77,32 +77,6 @@ def pontofixo(phi,x,tol=1e-8,maxit=100):
 
 # -----------------------------------------------------------------------------
 
-def falsaposicao(f,a,b,tol=1e-8,maxit=100):
-
-    print("\nMETODO DA FALSA POSICAO")
-
-    if ( f(a) * f(b) > 0 ):
-        print('Nao ha garantias de raiz no intervalo dado')
-        return None
-    xold = b
-    for k in range(maxit):
-        fa = f(a), f(b)
-        fb = f(b)
-        x = (a*fb - b*fa)/(fb-fa)
-        if (abs(x-xold) < tol):
-            return x
-        print(" %d %e %e" % ( k, x, abs(x-xold) ))
-        fx   = f(x)
-        xold = x
-        if (fa*fx > 0):
-            a = x
-        else:
-            b = x
-    print('Numero maximo de iteracoes excedido.')
-    return None
-
-# -----------------------------------------------------------------------------  
-
 def newton(f,df,x0,tol=1.0e-8,maxit=100):
 
     print("\nMETODO DE NEWTON")
@@ -122,76 +96,8 @@ def newton(f,df,x0,tol=1.0e-8,maxit=100):
     return None    
 
 # -----------------------------------------------------------------------------
-
-def secante(f,x0,x1,tol=1.0e-8,maxit=100):
-    """
-    Essa funcao implementa o metodo da Secante para encontrar a raiz da funcao f,
-    usando x0 e x1 como aproximacoes iniciais.
-    Parametros:
-       - f: funcao
-       - x0: aproximacao inicial
-       - x1: aproximacao inicial
-       - tol: precisao, i.e., converge quando |x2-x1| < tol
-       - maxit: numero maximo de iteracoes que o metodo pode realizar
-    Exemplo de uso:
-       def funcao(x): return 4*cos(x) - exp(x)
-       raiz = secante(funcao, 1.0)
-    """
-    print("\nMETODO DA SECANTE")
-
-    for k in range(maxit):
-        f1, f0 = f(x1),f(x0)
-        x2 = x1 - (f1*(x1-x0))/(f1-f0)
-        f2 = f(x2)
-
-        print("%2d %18.11e %18.11e" % ( k, x2, abs(x2-x1) ) )
-
-        if (abs(x2-x1) < tol):
-            return x2
-
-        x0 = x1
-        x1 = x2
-
-    print("Numero maximo de iteracoes excedido.")
-    return None
-
-# -----------------------------------------------------------------------------
-# Exemplos de funcoes para encontrar as raizes
-# -----------------------------------------------------------------------------
-# Exemplo 1
-# -----------------------------------------------------------------------------
-
-def f1(x): 
-    # f1(x) = 0
-    return (x/2.0)**2 - sin(x)
-
-def phi1(x): 
-    # x = phi1(x)
-    return 2.0*sqrt(sin(x))
-
-# -----------------------------------------------------------------------------
-# Exemplo 2 - Wilkinson
-# -----------------------------------------------------------------------------
-
-def pw(x):
-    #
-    # polinomio p(x) = (x-1)(x-2)(x-3)...(x-19)(x-20)
-    # expandido como c20 x^20 + c19 x^19 + ... + c1 x + c0 
-    #
-    return 1.0*x**20 - 210.0*x**19 + 20615.0*x**18 \
-           - 1256850.0*x**17 + 53327946.0*x**16 - 1672280820.0*x**15\
-           + 40171771630.0*x**14 - 756111184500.0*x**13 \
-           + 11310276995381.0*x**12 - 135585182899530.0*x**11 \
-           + 1.3075350105404e+15*x**10 - 1.01422998655115e+16*x**9 \
-           + 6.30308120992949e+16*x**8 - 3.11333643161391e+17*x**7 \
-           + 1.20664780378037e+18*x**6 - 3.59997951794761e+18*x**5 \
-           + 8.03781182264505e+18*x**4 - 1.2870931245151e+19*x**3 \
-           + 1.38037597536407e+19*x**2 - 8.7529480367616e+18*x \
-           + 2.43290200817664e+18
-
-# -----------------------------------------------------------------------------
        
 if __name__ == "__main__":
 
-  resultado = bisecao(vanDerWalls, 1, 100, 0.0000001,100)
+  resultado = bisecao(vanDerWalls, 0.0001, 100, 0.0000001,100)
   print(resultado)

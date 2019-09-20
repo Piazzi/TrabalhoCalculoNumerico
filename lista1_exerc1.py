@@ -10,7 +10,6 @@ def ln_taylor(n,x):
     for n in range(1,n+1):
         fator = ((-1)**(n-1)) * (x**n/n)
         soma = soma + fator
-        print("Somatorio: ", soma)
     return soma
 
 
@@ -64,10 +63,10 @@ if __name__ == "__main__":
 
     # Teste 1 - Testa aproximacao para exp(x)
     print("Aproximacao para exp(x)")
-    n = 400
+    n = 1000
     x = 1
     ap = ln_taylor(n,x)
-    ex = np.log(x)
+    ex = np.log(2)
     er = abs(ex-ap)
     print(" Exato = %e" % ex)
     print(" Aprox = %e" % ap)

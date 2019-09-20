@@ -7,18 +7,12 @@ import matplotlib.pyplot as plt
 def derivada(x, h):
   return  (math.sin(x+h) - math.sin(x)) / h
 
-
+def diferencaCentral(x, h):
+  return (math.sin(x+h) - math.sin(x - h))/(2*h)
+  
 print("Derivada encontrada pelo método: ", derivada(1,1))
 print("Derivada exata: ", math.cos(1))
 print("Erro: ", math.cos(1) - derivada(1,1))
-
-"""
-for i in range(1,5):
-    div = 2
-    erro = math.cos(1) - derivada(1, 1/div)
-    plt.plot([erro,2 ,3])
-    div = div*2
-"""
 
 erro1 = math.cos(1) - derivada(1, 1/2)
 erro2 = math.cos(1) - derivada(1, 1/4)
@@ -33,10 +27,12 @@ erro10 = math.cos(1) - derivada(1, 1/1024)
 
 
 plt.plot([erro1,erro2,erro3,erro4,erro5])
-plt.ylabel('Log')
+plt.xlabel('Log')
+plt.xscale('log')
 plt.yscale('log')
 plt.title('log')
-plt.xlabel('Erro')
+plt.xlabel('h')
+plt.ylabel('Erro')
 plt.grid(True)
 plt.show()
 plt.savefig("log.png")
