@@ -112,14 +112,22 @@ def T3(x):
 def T4(x):
     return 8*x**4 - 8*x**2 + 1
 
+def T5(x):
+    return 16*x**5 - 20*x**3 + 5*x
+
+def T6(x):
+    return 32*x**6 - 48*x**4 + 18*x**2 - 1
+
 def expressao(k, n):
     return np.cos(((2*k-1)/(2*n))*np.pi)
 
 
-resultado = bisecao(T2, 0, 1, 0.0000001,100)
+resultado = bisecao(T6, 0.0, 0.5, 0.0000001,100)
 print(resultado)
 
+print("Expressão: ", expressao(3,6))
 
+"""
 x = np.arange(resultado)
 
 fig = plt.figure()
@@ -138,4 +146,4 @@ ax.xaxis.set_ticks_position('bottom')
 ax.yaxis.set_ticks_position('left')
 
 plt.plot(x, x)
-plt.show()
+plt.show()"""
