@@ -3,11 +3,10 @@ Exemplo de funcao para aproximar exp(x) usando polinomio de Taylor
 Calculo Numerico, Turma X, DCC, UFJF, 2019
 Bernardo M. Rocha
 """
-
-from pylab import *
 from math import acos,pi
 import numpy as np
 import matplotlib.pyplot as plt
+
 
 #------------------------------------------------------------------------------
 # lISTA 3 - PROBLEMA 1
@@ -34,6 +33,7 @@ def bisecao(f,a,b,tol=1e-8,maxit=100000000):
     """
     print("\nMETODO DA BISECAO")
     if (f(a)*f(b) > 0):
+        print(f(a)*f(b))
         print("Nao ha garantias de que existe raiz nesse intervalo.")
         return None
     x = a
@@ -97,7 +97,45 @@ def newton(f,df,x0,tol=1.0e-8,maxit=100):
 
 # -----------------------------------------------------------------------------
        
-if __name__ == "__main__":
+def T0():
+    return 1
 
-  resultado = bisecao(vanDerWalls, 0.0001, 100, 0.0000001,100)
-  print(resultado)
+def T1(x):
+    return x
+
+def T2(x):
+    return 2*(x**2) - 1
+
+def T3(x):
+    return 4*x**3 - 3*x
+
+def T4(x):
+    return 8*x**4 - 8*x**2 + 1
+
+def expressao(k, n):
+    return np.cos(((2*k-1)/(2*n))*np.pi)
+
+
+resultado = bisecao(T2, 0, 1, 0.0000001,100)
+print(resultado)
+
+
+x = np.arange(resultado)
+
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+
+# Move left y-axis and bottim x-axis to centre, passing through (0,0)
+ax.spines['left'].set_position('center')
+ax.spines['bottom'].set_position('center')
+
+# Eliminate upper and right axes
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+
+# Show ticks in the left and lower axes only
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+
+plt.plot(x, x)
+plt.show()
