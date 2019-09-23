@@ -7,5 +7,12 @@ def ln_taylor1m(n, x):
         somatorio = somatorio - (x**n)/n
     return somatorio
 
-resultado = ln_taylor1m(3,1)
+def ln_taylor(n,x):
+    somatorio = 0
+    for n in range (1, n+1):
+        somatorio = somatorio + ((-1**(n+1)) + 1)*(x**n)/n
+    return somatorio
+    
+
+resultado = ln_taylor(1,1)
 print("Resultado: ", resultado)
