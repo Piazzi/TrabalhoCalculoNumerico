@@ -10,7 +10,7 @@ def ln_taylor1m(n, x):
 def ln_taylor(n,x):
     somatorio = 0
     for n in range (1, n+1):
-        somatorio = somatorio + ((-1**(n+1)) + 1)*(x**n)/n
+        somatorio = somatorio + abs((((-1)**(n+1)) + 1))*(x**n)/n
     return somatorio
     
 
