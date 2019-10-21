@@ -2,32 +2,31 @@
 import numpy as np
 from copy import deepcopy
 import sys
-from scipy.linalg import hilbert
 
 
 def inversa(A):
     shape = A.shape
 
     if shape[0] != shape[1]:
-        print ("Matriz não é quadrada")
+        print ("Matriz não é quadrada, insira uma matriz quadrada")
         return None
 
-    if(invertivel(A)):
-        print("Essa matriz é inversivel")
-    else:
+    if(invertivel(A) == 0):
         return None
 
+    I = matriz_identidade(shape[0])
     decompLU(A)
 
     M = np.zeros(shape)
 
-    for index, (n) in enumerate(A):
-        b = np.zeros(shape[0])
+    for index in enumerate(A):
+        b = np.zeros((shape[0],shape[0]))
         b[index] = 1
 
         x = solveLU(A, b)
         M[:, index] = x[:]
 
+    print("inversa: ", M)
     return M
 
 
@@ -127,32 +126,23 @@ def invertivel(A):
     resultado = 0 if np.linalg.det(A) == 0 else 1
     if(resultado):
         print("A matriz é inversivel")
-        return None
+        return 1
     else:
         print("A matriz não é inversivel")
-        return None
+        return 0
 
 # -----------------------------------------------------------------------------
-
-# função que determina a inversa de uma matriz através da decomposição LU
-def inversa(A):
-    if(invertivel(A)):
-        print("Essa matriz é inversivel")
-        #calculo da identidade da ordem da matriz A
-        ordem = A.shape
-        I = np.arange(ordem[0])
-        for i in range(1, ordem[0]):
-            for j in range(1, ordem[0]):
-                I[i][j] = 0
-                if(i == j):
-                    I[i,j] = 1
-        print(I)
-       
-    else:
-        print("Essa matriz não é inversivel")
-        return
    
-   
+# função que retorna uma matriz identidade para determinada ordem
+def matriz_identidade(ordem):
+    I = np.zeros((ordem,ordem))
+    for i in range(0, ordem):
+        for j in range(0, ordem):
+            if(i == j):
+                I[i,j] = 1
+        
+    print(I)
+    return I
 
 
 
@@ -178,27 +168,28 @@ if __name__ == "__main__":
     #
     # Exemplo 1
     #
-    print("\n\nEXEMPLO 1\n\n")
+
+    #print("\n\nEXEMPLO 1\n\n")
     A1,b1 = exemplo1()    
     print(A1)
-    print(b1)
-    x1 = gauss(A1,b1)
-    print("Solucao")
-    print(x1)
-    print(A1)
-    print(b1)
+    #print(b1)
+    #x1 = gauss(A1,b1)
+    #print("Solucao")
+    #print(x1)
+    #print(A1)
+    #print(b1)
 
 
     #
     # Exemplo 2 (LU,Cholesky)
     #
-    print("\n\nEXEMPLO 2\n\n")
-    A2,b2 = exemplo1()
-    decompLU(A2)
-    print("Fatores L e U")
-    print(A2)
-    x2 = solveLU(A2,b2)
-    print("Solucao")
-    print(x2)
+    #print("\n\nEXEMPLO 2\n\n")
+    #A2,b2 = exemplo1()
+    #decompLU(A2)
+    #print("Fatores L e U")
+    #print(A2)
+    #x2 = solveLU(A2,b2)
+    #print("Solucao")
+    #print(x2)
    
     inversa(A1)
