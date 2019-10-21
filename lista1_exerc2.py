@@ -14,5 +14,5 @@ def ln_taylor(n,x):
     return somatorio
     
 
-resultado = ln_taylor(1,1)
+resultado = ln_taylor(3,1)
 print("Resultado: ", resultado)
