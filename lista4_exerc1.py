@@ -27,6 +27,9 @@ def inversa(A):
         M[:, index] = x[:]
 
     print("inversa: ", M)
+    if(np.matmul(A,M) == I):
+        print("A matriz inversa encontrada esta correta")
+        
     return M
 
 
