@@ -13,14 +13,21 @@ def criaMatriz(x, ordem):
 
     return matrizA
 
-if __name__ == "__main__":
-
+def leituraArquivo():
+    arquivo = open("ex1_dados.txt", "r")
     x = []
     y = []
-    arquivo = open("ex1_dados.txt", "r")
-    for linha in arquivo:
-        x.append(arquivo.readline().strip().split()[0])
-        #y.append(arquivo.readline().strip().split()[0])
+    for linhas in arquivo:
+        linha = linhas.split()
+        x.append(linha[0])
+        y.append(linha[1])
+    
+    return x,y
+
+if __name__ == "__main__":
+
+    x, y = leituraArquivo()
+        
     
     print(x)
     print(y)
