@@ -102,7 +102,12 @@ def solveCholesky(G,b):
                     
 # -----------------------------------------------------------------------------
 
- 
+def g(c,x):
+    y = 0
+    for(index,value) in enumerate(c):
+        y += c.item(index)*x**index
+
+    return y
 if __name__ == "__main__":
 
     x = [-1, 0, 1, 2]
@@ -110,19 +115,19 @@ if __name__ == "__main__":
     A = criaMatriz(x)
     ATransposta = np.transpose(A)
     M = ATransposta.dot(A)
+    print(M)
    
     F = ATransposta.dot(y)
     G = cholesky(M)
     c = solveCholesky(G, F)
     x_g = np.linspace(-1, 2 , 10000)
     y_g = [ ]
-    print(A)
-    print(ATransposta)
-    print(c)
+    
     for value in x_g :
         y_g.append(g(c, value))
-        plt.plot(x_g, y_g)
-        plt.scatter(x, y, color='blue')
-        plt.show()
+
+    plt.plot(x_g, y_g)
+    plt.scatter(x, y, color='blue')
+    plt.show()
 
 
