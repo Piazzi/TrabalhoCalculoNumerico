@@ -20,8 +20,7 @@ def substituicao(A, b):
     return np.matrix(x).transpose()
 
 def criaMatriz(x):
-    shape = (len(x), 3)
-    matrizA = np.zeros(shape)
+    matrizA = np.zeros((len(x), 3))
     matrizA[ : , 0 ] = 1
     for index, value in enumerate (x):
         matrizA[index, 1] = value

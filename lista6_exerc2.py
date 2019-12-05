@@ -4,8 +4,7 @@ import math
 import lista6_exerc1 as solvers
 
 def criaMatriz(x, ordem):
-    shape = (len(x), ordem + 1)
-    matrizA = np.zeros(shape)
+    matrizA = np.zeros((len(x), ordem + 1))
     matrizA[ : , 0 ] = 1
     for index, value in enumerate (x):
         for n in range (1, ordem +1):
@@ -39,11 +38,10 @@ def g(c,x):
 if __name__ == "__main__":
 
     x, y = leituraArquivo()
-    A = criaMatriz(x, 5)
+    A = criaMatriz(x, 1)
     ATransposta = np.transpose(A)
     M = ATransposta.dot(A)
-    print(x)
-    print(y)
+   
    
    
     F = ATransposta.dot(y)
@@ -51,7 +49,7 @@ if __name__ == "__main__":
     c = solvers.solveCholesky(G, F)
     print(c)
 
-    x_g = np.linspace(-1, 2 , 10000)
+    x_g = np.linspace(-1,  6, 10000)
     y_g = [ ]
     
     for value in x_g :
