@@ -19,15 +19,16 @@ def leituraArquivo():
     y = []
     for linhas in arquivo:
         linha = linhas.split()
+        linha[0] = linha[0].replace(';','')
         x.append(linha[0])
         y.append(linha[1])
+    
+    
     
     return x,y
 
 if __name__ == "__main__":
 
     x, y = leituraArquivo()
-        
     
-    print(x)
-    print(y)
+    A = criaMatriz(x, 1)
